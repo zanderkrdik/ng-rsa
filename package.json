@@ -1,5 +1,6 @@
 {
-  "name": "angular2-quickstart",
+  "name": "ng-rsa",
+  "description": "RSA encryption decryption wxample built with Angular 2 & typescript",
   "version": "1.0.0",
   "scripts": {
     "tsc": "tsc",
