@@ -7,14 +7,11 @@
 <translation [text]="message.plaintext" [rsa]="rsa" action="rsa-encrypt" title="To RSA">
 </translation>
 
-<translation [text]="message.plaintext" action="decrypt" title="From Ascii">
+<translation [text]="message.plaintext" [rsa]="rsa" action="rsa-decrypt" title="From RSA">
 </translation>
 
-<div class="translation">
-    <label>Decoded Message: </label>{{message.dec_message}}
-</div>
-
-
+<translation [text]="message.plaintext" action="ascii-decrypt" title="From Ascii">
+</translation>
 
 <rsa-detail [rsa]="rsa">
 </rsa-detail>
