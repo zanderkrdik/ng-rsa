@@ -5,7 +5,7 @@ import {RSA} from './rsa';
     selector: 'rsa-detail',
     templateUrl: '../html/rsa-detail.html',
     styleUrls: ['../css/rsa-detail.css'],
-    inputs: ['rsa']
+    inputs: ['rsa'], 
 })
 
 export class RSADetailComponent {

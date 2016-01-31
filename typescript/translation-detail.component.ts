@@ -65,6 +65,9 @@ export class TranslationComponent implements OnChanges {
 
     ngOnChanges(changes: { [propName: string]: SimpleChange }) {
         console.log(changes);
+        if (changes['rsa']) {
+            return;
+        }
         if (!changes['text'].currentValue) {
             this.ascii = [];
             this.crypt = JSON.stringify(this.ascii);
