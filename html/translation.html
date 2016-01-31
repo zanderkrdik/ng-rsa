@@ -1,5 +1,11 @@
 <div class="translation">
     <label>{{title}}: </label>
     <section class="ciphertext">ciphertext: {{ciphertext}}</section>
+    <div *ngIf="rsa && action === 'rsa-encrypt'">
+        [65].pow({{rsa.public_key[1]}}).mod({{rsa.public_key[0]}}) = [rsa("A")]
+    </div>
+    <div *ngIf="rsa && action === 'rsa-decrypt'">
+        [rsa("A")].pow({{rsa.private_key}}).mod({{rsa.public_key[0]}}) = [65]
+    </div>
     <section class="deciphertext">deciphertext: {{deciphertext}}</section>
 </div>

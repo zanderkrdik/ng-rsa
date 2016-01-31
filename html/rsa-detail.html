@@ -1,9 +1,20 @@
 <h2>RSA</h2>
-<div class="form">
+<div>
     <label>Public Key: </label>
     <span>{{rsa.public_key}}</span>
     <label>Private Key: </label>
     <span>{{rsa.private_key}}</span>
-    
+    <div>
+    {{rsa.primes[0]}} x {{rsa.primes[1]}} = {{rsa.public_key[0]}}[pubkey_1]
+    </div>
+    <div>
+    ({{rsa.primes[0]}} - 1) * ({{rsa.primes[1]}} - 1) = {{rsa.totient}}[totient]
+    </div>
+    <div>
+    random_prime(1, {{rsa.totient}}) = {{rsa.public_key[1]}}[pubkey_2]
+    </div>
+    <div>
+    modular_multiplicative_inverse({{rsa.public_key[1]}}, {{rsa.totient}}) = {{rsa.private_key}}[privkey]
+    </div>
     <input type="reset" value="regen" (click)="onGenerate()">
 </div>

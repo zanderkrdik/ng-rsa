@@ -2,6 +2,7 @@ export class RSA {
     primes: number[];
     public_key: number[];
     private_key: number;
+    totient: number;
     constructor() {
         this.generate();
     }
@@ -61,6 +62,8 @@ export class RSA {
             e = this.random_prime(1, t),
             d = this.modular_multiplicative_inverse(e, t);
             console.log('p: %s, q: %s, p*q: %s, t: %s', p, q, n, t);
+            this.totient = t;
+        this.primes = [p,q];
         this.public_key = [n,e];
         this.private_key = d;
         return this;

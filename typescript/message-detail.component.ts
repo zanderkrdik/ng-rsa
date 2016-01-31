@@ -11,4 +11,5 @@ import {Message} from './message';
 
 export class MessageDetailComponent {
     public message: Message;
+    public ascii: number[];
 }
