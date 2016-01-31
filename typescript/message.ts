@@ -1,4 +1,4 @@
-
+import {RSA} from "./RSA";
 
 export class Message {
     constructor() { };
@@ -34,71 +34,3 @@ export class Message {
     }
 }
 
-export class RSA {
-    primes: number[];
-    public_key: number[];
-    private_key: number;
-    constructor() {
-        this.generate();
-    }
-
-    /**
-     * Generates a random prime
-     *
-     * @param   {min} int, minimal value
-     * @param   {max} int, maximal value
-     * @returns {int} a random generated prime
-     */
-    random_prime(min, max) {
-        var p = Math.floor(Math.random() * ((max - 1) - min + 1)) + min;
-        console.log(p);
-        if(bigInt(p).isPrime()===true){
-            return p;
-        } else {
-            return this.random_prime(min, max);   
-        } 
-    }
-
-    /**
-     * Calculate modular multiplicative inverse.
-     * https://en.wikipedia.org/wiki/Modular_multiplicative_inverse
-     * Function based on PHP variant on http://rosettacode.org/wiki/Modular_inverse
-     *
-     * @param   {a} int
-     * @param   {n} int
-     * @returns {int} Result of modular multiplicative inverse.
-     */
-    modular_multiplicative_inverse(a, n) {
-        var t = 0,
-            nt = 1,
-            r = n,
-            nr = a % n;
-        if (n < 0) {
-            n = -n;
-        }
-        if (a < 0) {
-            a = n - (-a % n);
-        }
-        while (nr !== 0) {
-            var quot = (r / nr) | 0;
-            var tmp = nt; nt = t - quot * nt; t = tmp;
-            tmp = nr; nr = r - quot * nr; r = tmp;
-        }
-        if (r > 1) { return -1; }
-        if (t < 0) { t += n; }
-        return t;
-    }
-
-    generate() {
-        // generate values
-        var p = this.random_prime(1, 255), // 8 bit
-            q = this.random_prime(1, 255), // 8 bit
-            n = p * q,
-            t = (p - 1) * (q - 1), // totient as φ(n) = (p − 1)(q − 1)
-            e = this.random_prime(1, t),
-            d = this.modular_multiplicative_inverse(e, t);
-        this.public_key = [n,e];
-        this.private_key = d;
-    }
-
-}
