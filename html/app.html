@@ -1,17 +1,17 @@
 <message-detail [message]="message">
 </message-detail>
 
-<translation [text]="message.plaintext" action="ascii-encrypt" title="To Ascii">
+<translation [ciphertext]="message.plaintext" (changeevent)="asciiJSON = $event" action="ascii-encrypt" title="To Ascii">
 </translation>
 
-<translation [text]="message.plaintext" [rsa]="rsa" action="rsa-encrypt" title="To RSA">
+<translation [ciphertext]="asciiJSON" [rsa]="rsa" (changeevent)="rsaJSON = $event" action="rsa-encrypt" title="To RSA">
 </translation>
 
-<translation [text]="message.plaintext" [rsa]="rsa" action="rsa-decrypt" title="From RSA">
+<translation [ciphertext]="rsaJSON" [rsa]="rsa" (changeevent)="deJSON = $event" action="rsa-decrypt" title="From RSA">
 </translation>
 
-<translation [text]="message.plaintext" action="ascii-decrypt" title="From Ascii">
+<translation [ciphertext]="deJSON" action="ascii-decrypt" title="From Ascii">
 </translation>
 
-<rsa-detail [(rsa)]="rsa">
+<rsa-detail [rsa]="rsa">
 </rsa-detail>

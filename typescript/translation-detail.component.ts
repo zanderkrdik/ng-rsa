@@ -1,90 +1,89 @@
-import {Component, Input, OnChanges, SimpleChange} from 'angular2/core';
+import {EventEmitter, Component, Input, Output, OnChanges, SimpleChange, ViewEncapsulation} from 'angular2/core';
 import {RSA} from './rsa';
 
 @Component({
     selector: 'translation',
     templateUrl: '../html/translation.html',
     styleUrls: ['../css/translation.css'],
-    inputs: ['text', 'action', 'rsa', 'title'],
+    inputs: ['text', 'action', 'rsa', 'title', 'ciphertext'],
+    encapsulation: ViewEncapsulation.None
+
 })
 
 export class TranslationComponent implements OnChanges {
-    @Input() text: string;
     @Input() rsa: RSA;
     public title:string;
     public action: string;
-    public ascii: number[];
-    public crypt: string;
+    @Input() ciphertext: string;
+    public deciphertext: string;
+    @Output() changeevent = new EventEmitter<String>();
 
     /**
      * asciiencrypt
      * Convert a `string` to an ascii `number[]`
      */
     asciiencrypt(str: string) {
-        this.ascii = str.split('').map(char => char.charCodeAt(0));
-        this.crypt = JSON.stringify(this.ascii);
+        var ascii = str.split('').map(char => char.charCodeAt(0));
+        this.deciphertext = JSON.stringify(ascii);
+        this.changeevent.emit(this.deciphertext);
     }
 
     /**
      * asciidecrypt
      * Convert an ascii `number[]` to a `string`
      */
-    asciidecrypt(str: string) {
-        //TODO: fix this so it does not encrypt for the sake of decryption.
-        this.asciiencrypt(str);
-        this.crypt = this.ascii.map(char => String.fromCharCode(char)).join("");
+    asciidecrypt(json: string) {
+        this.deciphertext = JSON.parse(json).map(char => String.fromCharCode(char)).join("");
+        this.changeevent.emit(this.deciphertext);
     }
 
     /**
      * rsaencrypt
      * Convert an ascii `number[]` into a RSA encrypted `number[]`
      */
-    rsaencrypt(str: string) {
+    rsaencrypt(json: string) {
         var self = this;
-        //TODO: fix this so it does not encrypt for the sake of decryption.
-        this.asciiencrypt(str);
-        this.ascii = this.ascii.map(function(i) {
+        var rsaJSON = JSON.parse(json).map(function(i) {
             return bigInt(i).pow(self.rsa.public_key[1]).mod(self.rsa.public_key[0]).toJSNumber();
         });
-        this.crypt = JSON.stringify(this.ascii);
+        this.deciphertext = JSON.stringify(rsaJSON);
+        this.changeevent.emit(this.deciphertext);
     }
 
     /**
      * rsadecrypt
      * Convert a RSA encrypted `number[]` into an ascii `number[]`
      */
-    rsadecrypt(str: string) {
+    rsadecrypt(json: string) {
         var self = this;
-        //TODO: fix this so it does not encrypt for the sake of decryption.
-        this.rsaencrypt(str);
-        this.ascii = this.ascii.map(function(i) {
+        var asciiJSON = JSON.parse(json).map(function(i) {
             return bigInt(i).pow(self.rsa.private_key).mod(self.rsa.public_key[0]).toJSNumber();
         });
-        this.crypt = JSON.stringify(this.ascii);
+        this.deciphertext = JSON.stringify(asciiJSON);
+        this.changeevent.emit(this.deciphertext);
     }
 
     ngOnChanges(changes: { [propName: string]: SimpleChange }) {
-        console.log(changes);
+        //console.log(changes);
         if (changes['rsa']) {
             return;
         }
-        if (!changes['text'].currentValue) {
-            this.ascii = [];
-            this.crypt = JSON.stringify(this.ascii);
+        if (!changes['ciphertext'].currentValue) {
+            //TODO: set some default values
             return;
         }
         switch (this.action) {
             case "ascii-encrypt":
-                this.asciiencrypt(changes['text'].currentValue);
+                this.asciiencrypt(changes['ciphertext'].currentValue);
                 break;
             case "ascii-decrypt":
-                this.asciidecrypt(changes['text'].currentValue);
+                this.asciidecrypt(changes['ciphertext'].currentValue);
                 break;
             case "rsa-encrypt":
-                this.rsaencrypt(changes['text'].currentValue);
+                this.rsaencrypt(changes['ciphertext'].currentValue);
                 break;
             case "rsa-decrypt":
-                this.rsadecrypt(changes['text'].currentValue);
+                this.rsadecrypt(changes['ciphertext'].currentValue);
                 break;
             default:
         }
