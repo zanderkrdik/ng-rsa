@@ -28,10 +28,7 @@ export class AppComponent implements OnInit {
   public selectedHero: Hero;
   
   public message: Message;
-  public rsa: RSA;
-  
-  public asciiJSON: string;
-  
+    
   constructor(private _heroService: HeroService) { }
   
   getHeroes() {
@@ -40,7 +37,6 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     this.getHeroes();
-    this.rsa = new RSA();
     this.message = new Message();
   }
   

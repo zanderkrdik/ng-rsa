@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Output, EventEmitter, Component, OnInit} from 'angular2/core';
 import {RSA} from './rsa';
 
 @Component({
@@ -10,4 +10,15 @@ import {RSA} from './rsa';
 
 export class RSADetailComponent {
     public rsa: RSA;
+    @Output() changeevent = new EventEmitter<RSA>();
+    
+    onGenerate() {
+        this.rsa = new RSA();
+        this.changeevent.emit(this.rsa);
+    }
+    ngOnInit() {
+        this.rsa = new RSA();
+        this.changeevent.emit(this.rsa);
+    }
+    
 }

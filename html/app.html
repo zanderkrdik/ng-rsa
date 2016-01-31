@@ -13,5 +13,5 @@
 <translation [ciphertext]="deJSON" action="ascii-decrypt" title="From Ascii">
 </translation>
 
-<rsa-detail [rsa]="rsa">
+<rsa-detail (changeevent)="rsa = $event">
 </rsa-detail>

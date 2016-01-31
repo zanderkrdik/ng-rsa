@@ -63,6 +63,7 @@ export class RSA {
             console.log('p: %s, q: %s, p*q: %s, t: %s', p, q, n, t);
         this.public_key = [n,e];
         this.private_key = d;
+        return this;
     }
 
 }
