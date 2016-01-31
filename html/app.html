@@ -1,4 +1,6 @@
+<span style="float:left;width:49%;">
 <message-detail [message]="message">
+
 </message-detail>
 
 <translation [ciphertext]="message.plaintext" (changeevent)="asciiJSON = $event" action="ascii-encrypt" title="To Ascii">
@@ -12,6 +14,9 @@
 
 <translation [ciphertext]="deJSON" action="ascii-decrypt" title="From Ascii">
 </translation>
+</span>
 
+<span style="float:right;width:49%;">
 <rsa-detail (changeevent)="rsa = $event">
 </rsa-detail>
+</span>
