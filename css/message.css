@@ -1,0 +1,20 @@
+
+div {
+    margin: 1em;
+    padding: .25em;
+    line-height: 1.25em;
+    font-size: 1.25em;
+    border: 1em solid seagreen;
+    color: black;
+    position: relative;
+}
+
+input {
+}
+
+.form label {
+}
+
+.translation label {
+    
+}

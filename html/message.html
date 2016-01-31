@@ -1,0 +1,27 @@
+<h2>Message</h2>
+<div class="form">
+    <label>Plaintext Message: </label>
+    <input [(ngModel)]="message.plaintext" placeholder="The plaintext message"/>
+    <input type="submit" (click)="message.calcnumerictext()">
+</div>
+<div class="translation">
+    <label>plaintext: </label>{{message.plaintext}}
+</div>
+<div>
+    <label>Encryption Key: </label>{{message.rsa.public_key}}
+</div>
+<div class="translation">
+    <label>ASCII: </label>{{message.asciitext}}
+</div>
+<div class="translation">
+    <label>Encoded: </label>{{message.modasciitext}}
+</div>
+<div>
+    <label>Decryption Key: </label>{{message.rsa.private_key}}
+</div>
+<div class="translation">
+    <label>Decoded Ascii: </label>{{message.decasciitext}}
+</div>
+<div class="translation">
+    <label>Decoded Message: </label>{{message.dec_message}}
+</div>
