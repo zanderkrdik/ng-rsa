@@ -16,18 +16,29 @@ export class TranslationComponent implements OnChanges {
     public ascii: number[];
     public crypt: string;
 
-
+    /**
+     * asciiencrypt
+     * Convert a `string` to an ascii `number[]`
+     */
     asciiencrypt(str: string) {
         this.ascii = str.split('').map(char => char.charCodeAt(0));
         this.crypt = JSON.stringify(this.ascii);
     }
 
+    /**
+     * asciidecrypt
+     * Convert an ascii `number[]` to a `string`
+     */
     asciidecrypt(str: string) {
         //TODO: fix this so it does not encrypt for the sake of decryption.
         this.asciiencrypt(str);
         this.crypt = this.ascii.map(char => String.fromCharCode(char)).join("");
     }
 
+    /**
+     * rsaencrypt
+     * Convert an ascii `number[]` into a RSA encrypted `number[]`
+     */
     rsaencrypt(str: string) {
         var self = this;
         //TODO: fix this so it does not encrypt for the sake of decryption.
@@ -38,6 +49,10 @@ export class TranslationComponent implements OnChanges {
         this.crypt = JSON.stringify(this.ascii);
     }
 
+    /**
+     * rsadecrypt
+     * Convert a RSA encrypted `number[]` into an ascii `number[]`
+     */
     rsadecrypt(str: string) {
         var self = this;
         //TODO: fix this so it does not encrypt for the sake of decryption.
