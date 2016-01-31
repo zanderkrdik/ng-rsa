@@ -1,6 +1,20 @@
- 
- 
- <message-detail [message]="message"></message-detail>
- <rsa-detail [rsa]="rsa"></rsa-detail>
- 
-    
+<message-detail [message]="message">
+</message-detail>
+
+<translation [text]="message.plaintext" action="ascii-encrypt" title="To Ascii">
+</translation>
+
+<translation [text]="message.plaintext" [rsa]="rsa" action="rsa-encrypt" title="To RSA">
+</translation>
+
+<translation [text]="message.plaintext" action="decrypt" title="From Ascii">
+</translation>
+
+<div class="translation">
+    <label>Decoded Message: </label>{{message.dec_message}}
+</div>
+
+
+
+<rsa-detail [rsa]="rsa">
+</rsa-detail>

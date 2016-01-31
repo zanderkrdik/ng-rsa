@@ -8,14 +8,16 @@ import {Message} from './message';
 import {MessageDetailComponent} from './message-detail.component';
 import {RSA} from './rsa';
 import {RSADetailComponent} from './rsa-detail.component';
+import {TranslationComponent} from './translation-detail.component';
 
 @Component({
   selector: 'my-app',
   templateUrl: '../html/app.html',
   styleUrls: ['../css/app.css'],
   directives: [
-      MessageDetailComponent, 
-      RSADetailComponent
+      RSADetailComponent, 
+      MessageDetailComponent,
+      TranslationComponent 
       ],
   providers: [HeroService]
 })
@@ -27,6 +29,7 @@ export class AppComponent implements OnInit {
   
   public message: Message;
   public rsa: RSA;
+  public ascii: number[];
   
   
   constructor(private _heroService: HeroService) { }
@@ -39,7 +42,7 @@ export class AppComponent implements OnInit {
     this.getHeroes();
     this.rsa = new RSA();
     this.message = new Message(this.rsa);
-
+    
   }
   
   onSelect(hero: Hero) { this.selectedHero = hero; }

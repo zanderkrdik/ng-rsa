@@ -4,15 +4,3 @@
     <input [(ngModel)]="message.plaintext" placeholder="The plaintext message"/>
     <input type="submit" (click)="message.calcnumerictext()">
 </div>
-<div class="translation">
-    <label>ASCII: </label>{{message.asciitext}}
-</div>
-<div class="translation">
-    <label>Encoded: </label>{{message.modasciitext}}
-</div>
-<div class="translation">
-    <label>Decoded Ascii: </label>{{message.decasciitext}}
-</div>
-<div class="translation">
-    <label>Decoded Message: </label>{{message.dec_message}}
-</div>
