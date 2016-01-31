@@ -1,0 +1,9 @@
+<h2>RSA</h2>
+<div class="form">
+    <label>Public Key: </label>
+    <span>{{rsa.public_key}}</span>
+    <label>Private Key: </label>
+    <span>{{rsa.private_key}}</span>
+    
+    <input type="reset" value="regen" (click)="rsa.generate()">
+</div>

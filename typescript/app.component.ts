@@ -6,14 +6,16 @@ import {HeroService} from './hero.service';
 
 import {Message} from './message';
 import {MessageDetailComponent} from './message-detail.component';
+import {RSA} from './rsa';
+import {RSADetailComponent} from './rsa-detail.component';
 
 @Component({
   selector: 'my-app',
   templateUrl: '../html/app.html',
   styleUrls: ['../css/app.css'],
   directives: [
-      HeroDetailComponent, 
-      MessageDetailComponent
+      MessageDetailComponent, 
+      RSADetailComponent
       ],
   providers: [HeroService]
 })
@@ -24,6 +26,7 @@ export class AppComponent implements OnInit {
   public selectedHero: Hero;
   
   public message: Message;
+  public rsa: RSA;
   
   
   constructor(private _heroService: HeroService) { }
@@ -34,7 +37,9 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     this.getHeroes();
-    this.message = new Message();
+    this.rsa = new RSA();
+    this.message = new Message(this.rsa);
+
   }
   
   onSelect(hero: Hero) { this.selectedHero = hero; }

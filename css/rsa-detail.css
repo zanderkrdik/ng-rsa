@@ -1,0 +1,12 @@
+div {
+    margin: 1em;
+    padding: .25em;
+    line-height: 1.25em;
+    font-size: 1.25em;
+    border: 1em solid red;
+    color: black;
+    position: relative;
+}
+input[type=reset] {
+    float: right;
+}
