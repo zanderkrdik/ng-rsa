@@ -1,9 +1,5 @@
 import {Component, OnInit} from 'angular2/core';
 
-import {Hero} from './hero';
-import {HeroDetailComponent} from './hero-detail.component';
-import {HeroService} from './hero.service';
-
 import {Message} from './message';
 import {MessageDetailComponent} from './message-detail.component';
 import {RSA} from './rsa';
@@ -19,26 +15,17 @@ import {TranslationComponent} from './translation-detail.component';
       MessageDetailComponent,
       TranslationComponent 
       ],
-  providers: [HeroService]
 })
 
 export class AppComponent implements OnInit {
   public title:string = 'Tour of Heroes';
-  public heroes: Hero[];
-  public selectedHero: Hero;
   
   public message: Message;
     
-  constructor(private _heroService: HeroService) { }
   
-  getHeroes() {
-    this._heroService.getHeroes().then(heroes => this.heroes = heroes);
-  }
   
   ngOnInit() {
-    this.getHeroes();
     this.message = new Message();
   }
   
-  onSelect(hero: Hero) { this.selectedHero = hero; }
 }

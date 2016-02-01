@@ -64,7 +64,6 @@ export class TranslationComponent implements OnChanges {
     }
 
     ngOnChanges(changes: { [propName: string]: SimpleChange }) {
-        console.log(changes);
         if (changes['rsa']) {
             //this.rsaencrypt(changes['ciphertext'].currentValue);
             return;

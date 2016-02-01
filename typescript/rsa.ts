@@ -61,7 +61,7 @@ export class RSA {
             t = (p - 1) * (q - 1), // totient as φ(n) = (p − 1)(q − 1)
             e = this.random_prime(1, t),
             d = this.modular_multiplicative_inverse(e, t);
-            console.log('p: %s, q: %s, p*q: %s, t: %s', p, q, n, t);
+            //console.log('p: %s, q: %s, p*q: %s, t: %s', p, q, n, t);
             this.totient = t;
         this.primes = [p,q];
         this.public_key = [n,e];
