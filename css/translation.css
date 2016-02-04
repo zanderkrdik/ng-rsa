@@ -1,5 +1,37 @@
+div {
+    margin: 1rem;
+    padding: .25rem;
+    font-size: .75rem;
+    border: .1px solid red;
+    color: black;
+    position: relative;
+}
+input[type="reset"] {
+    position: relative;
+    height: 1.25em;
+    width: 100px;
+    text-align: center;
+}
+
 section {
-    font-size: 1em;
-    margin: .25em;
-    padding: .125em;
+    padding:.25rem;
+}
+
+section.key label {
+    font-size:1rem;
+    text-transform: uppercase;
+}
+section.key span {
+    font-size:1rem;
+    font-weight: bold;
+}
+
+section.example label {
+    width:100%;
+    display:inline-block;
+    font-size:.75rem;
+}
+section.example span {
+    display:inline-block;
+    font-size:1rem;
 }

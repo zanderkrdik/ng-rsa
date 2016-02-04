@@ -1,20 +1,30 @@
 <h2>RSA</h2>
 <div>
+    <div>
+    <section class="key">
     <label>Public Key: </label>
-    <span>{{rsa.public_key}}</span>
+    <span>{{rsa.public_key.toString().replace(',',', ')}}</span>
+    </section>
+    <section class="key">
     <label>Private Key: </label>
     <span>{{rsa.private_key}}</span>
-    <div>
-    {{rsa.primes[0]}} x {{rsa.primes[1]}} = {{rsa.public_key[0]}}[pubkey_1]
+    </section>
     </div>
-    <div>
-    ({{rsa.primes[0]}} - 1) * ({{rsa.primes[1]}} - 1) = {{rsa.totient}}[totient]
-    </div>
-    <div>
-    random_prime(1, {{rsa.totient}}) = {{rsa.public_key[1]}}[pubkey_2]
-    </div>
-    <div>
-    modular_multiplicative_inverse({{rsa.public_key[1]}}, {{rsa.totient}}) = {{rsa.private_key}}[privkey]
-    </div>
+    <section class="example">
+        <label>Compute first part of public key, the radix::</label>
+        <span>{{rsa.primes[0]}} x {{rsa.primes[1]}} = {{rsa.public_key[0]}} (pubkey[0])</span>
+    </section>
+    <section class="example">
+        <label>Compute the totient of the two initial primes:</label>
+        <span>({{rsa.primes[0]}} - 1) * ({{rsa.primes[1]}} - 1) = {{rsa.totient}} (totient)</span>
+    </section>
+    <section class="example">
+        <label>Generate another random prime using the totient as the max:</label>
+        <span>random_prime(1, {{rsa.totient}}) = {{rsa.public_key[1]}} (pubkey[1])</span>
+    </section>
+    <section class="example">
+        <label>Compute the modular mulitplicative inverse of the radix and the totient, the private key:</label>
+        <span>inverse({{rsa.public_key[1]}}, {{rsa.totient}}) = {{rsa.private_key}} (privkey)</span>
+    </section>
     <input type="reset" value="regen" (click)="onGenerate()">
 </div>

@@ -4,9 +4,12 @@ div {
     padding: .25em;
     line-height: 1.25em;
     font-size: 1.25em;
-    border: .1em solid seagreen;
     color: black;
     position: relative;
+}
+
+.step {
+    border: 1px dotted grey;
 }
 
 input {

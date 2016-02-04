@@ -55,8 +55,8 @@ export class RSA {
 
     generate() {
         // generate values
-        var p = this.random_prime(1, 255), // 8 bit
-            q = this.random_prime(1, 255), // 8 bit
+        var p = this.random_prime(1, 63), // 2 bit
+            q = this.random_prime(1, 63), // 2 bit
             n = p * q,
             t = (p - 1) * (q - 1), // totient as φ(n) = (p − 1)(q − 1)
             e = this.random_prime(1, t),

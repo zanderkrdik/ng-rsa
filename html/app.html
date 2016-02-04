@@ -2,18 +2,20 @@
 <message-detail [message]="message">
 
 </message-detail>
-
+<div class="step encode">
 <translation [ciphertext]="message.plaintext" (changeevent)="asciiJSON = $event" action="ascii-encrypt" title="To Ascii">
 </translation>
 
 <translation [ciphertext]="asciiJSON" [rsa]="rsa" (changeevent)="rsaJSON = $event" action="rsa-encrypt" title="To RSA">
 </translation>
-
+</div>
+<div class="step decode">
 <translation [ciphertext]="rsaJSON" [rsa]="rsa" (changeevent)="deJSON = $event" action="rsa-decrypt" title="From RSA">
 </translation>
 
 <translation [ciphertext]="deJSON" action="ascii-decrypt" title="From Ascii">
 </translation>
+</div>
 </span>
 
 <span style="float:right;width:49%;">
